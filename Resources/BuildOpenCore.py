@@ -255,6 +255,24 @@ def BuildEFI():
             "<data>Ag==</data>"
         )
 
+#
+# iMac specific path to get backlight on internal display with some GPU cards
+#
+    if current_model in ("iMac11,1", "iMac11,2", "iMac11,3"):
+        print("- Setting iMac11,X GFX0")
+        Versions.plist_data = Versions.plist_data.replace(
+            "#PciRoot(0x0)/Pci(0x3,0x0)/Pci(0x0,0x0)",
+            "PciRoot(0x0)/Pci(0x3,0x0)/Pci(0x0,0x0)"
+        )
+        
+    if current_model in ("iMac12,1", "iMac12,2"):
+        print("- Setting iMac12,X GFX0")
+        Versions.plist_data = Versions.plist_data.replace(
+            "#PciRoot(0x0)/Pci(0x1,0x0)/Pci(0x0,0x0)",
+            "PciRoot(0x0)/Pci(0x1,0x0)/Pci(0x0,0x0)"
+        )
+
+
 
 def BuildGUI():
     print("- Adding OpenCanopy GUI")
@@ -292,6 +310,9 @@ def BuildSMBIOS():
     elif current_model in ModelArray.MacPro71:
         print("- Spoofing to MacPro7,1")
         new_model = "MacPro7,1"
+    elif current_model in ModelArray.iMacPro11:
+        print("- Spoofing to iMacPro1,1")
+        new_model = "iMacPro1,1"
 
     # Grab serials from macserial
     serialPatch = subprocess.Popen(["xattr", "-cr", "./payloads/tools/macserial"], stdout=subprocess.PIPE).communicate()[0]

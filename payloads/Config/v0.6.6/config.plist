@@ -168,6 +168,20 @@
 				<key>compatible</key>
 				<string>pci14e4,43ba</string>
 			</dict>
+			<key>#PciRoot(0x0)/Pci(0x3,0x0)/Pci(0x0,0x0)</key>
+			<dict>
+				<key>@0,backlight-control</key>
+				<data>AQAAAA==</data>
+				<key>@0,built-in</key>
+				<data>AQAAAA==</data>
+			</dict>
+			<key>#PciRoot(0x0)/Pci(0x1,0x0)/Pci(0x0,0x0)</key>
+			<dict>
+				<key>@0,backlight-control</key>
+				<data>AQAAAA==</data>
+				<key>@0,built-in</key>
+				<data>AQAAAA==</data>
+			</dict>
 		</dict>
 		<key>Delete</key>
 		<dict/>
@@ -476,6 +490,24 @@
 				<key>BundlePath</key>
 				<string>USB-Map-SMBIOS.kext</string>
 				<key>ExecutablePath</key>
+				<string></string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>Arch</key>
+				<string>Any</string>
+				<key>BundlePath</key>
+				<string>AppleBacklightFixup.kext</string>
+				<key>Comment</key>
+				<string>Nvidia only!</string>
+				<key>Enabled</key>
+				<false/><!--AppleBacklightFixup-->
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/AppleBacklightFixup</string>
+				<key>MaxKernel</key>
+				<string></string>
+				<key>MinKernel</key>
 				<string></string>
 				<key>PlistPath</key>
 				<string>Contents/Info.plist</string>

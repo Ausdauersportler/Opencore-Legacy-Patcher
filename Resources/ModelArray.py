@@ -314,12 +314,12 @@ LegacyGPU = [
     "iMac7,1",
     "iMac8,1",
     "iMac9,1",
-    "iMac10,1",
-    "iMac11,1",
-    "iMac11,2",
-    "iMac11,3",
-    "iMac12,1",
-    "iMac12,2"
+#    "iMac10,1",
+#    "iMac11,1",
+#    "iMac11,2",
+#    "iMac11,3",
+#    "iMac12,1",
+#    "iMac12,2"
 ]
 
 LegacyHID = [
@@ -419,7 +419,7 @@ MacBookPro111 = [
     "MacBookPro7,1",
     "MacBookPro8,1",
     "MacBookPro9,2",
-    "MacBookPro10,2",
+    "MacBookPro10,2"
 ]
 
 # MacBook Pro 15" and 17"
@@ -436,7 +436,7 @@ MacBookPro112 = [
     "MacBookPro8,2",
     "MacBookPro8,3",
     "MacBookPro9,1",
-    "MacBookPro10,1",
+    "MacBookPro10,1"
 ]
 
 # Mac Mini
@@ -457,11 +457,6 @@ iMac151 = [
     "iMac8,1",
     "iMac9,1",
     "iMac10,1",
-    "iMac11,1",
-    "iMac11,2",
-    "iMac11,3",
-    "iMac12,1",
-    "iMac12,2",
     "iMac13,2",
     "iMac14,2",
     "iMac14,3"
@@ -478,4 +473,13 @@ MacPro71 = [
     "MacPro4,1",
     "MacPro5,1",
     "Xserve3,1"
+]
+
+# iMac = metal AMD and metal Nvidia GPU
+iMacPro11 = [
+    "iMac11,1",
+    "iMac11,2",
+    "iMac11,3",
+    "iMac12,1",
+    "iMac12,2"
 ]
