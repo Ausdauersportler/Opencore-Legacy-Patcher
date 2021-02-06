@@ -25,7 +25,7 @@ io80211high_sierra_version = "1.0.0"
 io80211mojave_version = "1.0.0"
 voodoohda_version = "296"
 restrictevents_version = "1.0.0"
-#backlightfixup_version = "1.0.0"
+backlightfixup_version = "1.0.0"
 
 # List current location
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
@@ -61,7 +61,7 @@ voodoohda_path = os.path.join(current_path, "payloads/Kexts/Audio/" "VoodooHDA-v
 #
 # iMac 11,x and 12,x NVIDIA
 #
-#backlightfixup_path = os.path.join(current_path, "payloads/Kexts/Backlight/" "AppleBacklightFixup-v%s.zip" % backlightfixup_version)
+backlightfixup_path = os.path.join(current_path, "payloads/Kexts/Backlight/" "AppleBacklightFixup-v%s.zip" % backlightfixup_version)
 
 # Build Location
 opencore_path_build = os.path.join(current_path, "Build-Folder/" "OpenCore-v%s.zip" % opencore_version)
