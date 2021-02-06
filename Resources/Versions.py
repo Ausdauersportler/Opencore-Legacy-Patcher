@@ -12,8 +12,8 @@ import sys
 
 # List build versions
 opencore_version = "0.6.6"
-lilu_version = "1.5.0"
-whatevergreen_version = "1.4.6"
+lilu_version = "1.5.1"
+whatevergreen_version = "1.4.7"
 airportbcrmfixup_version = "2.1.2"
 bcm570_version = "1.0.0"
 marvel_version = "1.0.0"
