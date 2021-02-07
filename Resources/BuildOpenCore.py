@@ -33,6 +33,14 @@ else:
     current_model = subprocess.Popen("system_profiler SPHardwareDataType".split(), stdout=subprocess.PIPE)
     current_model = [line.strip().split(": ", 1)[1] for line in current_model.stdout.read().split("\n")  if line.strip().startswith("Model Identifier")][0]
     print("Current Model: %s" % current_model)
+    
+current_gpuv = subprocess.Popen("system_profiler SPDisplaysDataType".split(), stdout=subprocess.PIPE)
+current_gpuv = [line.strip().split(": ", 1)[1] for line in current_gpuv.stdout.read().split("\n")  if line.strip().startswith("Vendor")][0]
+print("GPU Vendor: %s" % current_gpuv)
+
+#current_gpuid = subprocess.Popen("system_profiler SPDisplaysDataType".split(), stdout=subprocess.PIPE)
+#current_gpuid = [line.strip().split(": ", 1)[1] for line in current_gpuid.stdout.read().split("\n")  if line.strip().startswith("Device ID")][0]
+#print("GPU Device ID: %s" % current_gpuid)
 
 OCExist = False
 
@@ -259,18 +267,26 @@ def BuildEFI():
 # iMac specific path to get backlight on internal display with some GPU cards
 # and boot-args for AMD DRM support (used for all configs)
 #
+
     if current_model in ("iMac11,1", "iMac11,2", "iMac11,3"):
         print("- Setting iMac11,x GFX0")
         Versions.plist_data = Versions.plist_data.replace(
             "#PciRoot(0x0)/Pci(0x3,0x0)/Pci(0x0,0x0)",
             "PciRoot(0x0)/Pci(0x3,0x0)/Pci(0x0,0x0)")
-        print("- Adding iMac11,x boot-args")
-        Versions.plist_data = Versions.plist_data.replace(
-            "debug=0x100",
-            "debug=0x100 -lilubetaall -wegbeta shikigva=80 unfairgva=1 mbasd=1 -wegtree"
-        )
-        print("- Adding AppleBacklightFixup v%s" % Versions.backlightfixup_version)
-        copy(Versions.backlightfixup_path, Versions.kext_path_build)
+        if current_gpuv in ("AMD (0x1002)"):
+            print("- Adding iMac11,x AMD boot-args")
+            Versions.plist_data = Versions.plist_data.replace(
+                "debug=0x100",
+                "debug=0x100 -lilubetaall -wegbeta shikigva=80 unfairgva=1 mbasd=1 -wegtree"
+#               "debug=0x100 shikigva=128 unfairgva=1 -wegtree"
+            )
+        else:
+            print("- Adding AppleBacklightFixup v%s" % Versions.backlightfixup_version)
+            copy(Versions.backlightfixup_path, Versions.kext_path_build)
+            Versions.plist_data = Versions.plist_data.replace(
+                "<false/><!--AppleBacklightFixup-->",
+                "<true/><!--AppleBacklightFixup-->"
+            )
 
         
     if current_model in ("iMac12,1", "iMac12,2"):
@@ -278,15 +294,20 @@ def BuildEFI():
         Versions.plist_data = Versions.plist_data.replace(
             "#PciRoot(0x0)/Pci(0x1,0x0)/Pci(0x0,0x0)",
             "PciRoot(0x0)/Pci(0x1,0x0)/Pci(0x0,0x0)")
-        print("- Adding iMac12,x boot-args")
-        Versions.plist_data = Versions.plist_data.replace(
-            "debug=0x100",
-            "debug=0x100 -lilubetaall -wegbeta shikigva=80 unfairgva=1 mbasd=1 -wegtree"
-        )
-        print("- Adding AppleBacklightFixup v%s" % Versions.backlightfixup_version)
-        copy(Versions.backlightfixup_path, Versions.kext_path_build)
-
-
+        if current_gpuv in ("AMD (0x1002)"):
+            print("- Adding iMac11,x AMD boot-args")
+            Versions.plist_data = Versions.plist_data.replace(
+                "debug=0x100",
+                "debug=0x100 -lilubetaall -wegbeta shikigva=80 unfairgva=1 mbasd=1 -wegtree"
+#               "debug=0x100 shikigva=128 unfairgva=1 -wegtree"
+            )
+        else:
+            print("- Adding AppleBacklightFixup v%s" % Versions.backlightfixup_version)
+            copy(Versions.backlightfixup_path, Versions.kext_path_build)
+            Versions.plist_data = Versions.plist_data.replace(
+                "<false/><!--AppleBacklightFixup-->",
+                "<true/><!--AppleBacklightFixup-->"
+            )
 
 
 def BuildGUI():
